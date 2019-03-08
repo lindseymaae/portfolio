@@ -13,7 +13,7 @@ import { takeEvery, put } from 'redux-saga/effects'
 import axios from 'axios'
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('', getData)
+    yield takeEvery('GET_PROJECT', getData)
     // yield takeEvery('', potterSaga)
     // yield takeEvery('BURN_WEED', controlledBurn)
 
@@ -25,7 +25,9 @@ function* getData(){
             type: 'GET',
             url: '/api/project'
         })
-        yield put({ type: 'ADD_PROJECT', payload: getProject.data })
+        yield put({ type: 'SET_PROJECTS', payload: getProject.data })
+        console.log(getProject.data);
+        
     }
     catch (err) {
         console.log('in getProject (get)', err)
