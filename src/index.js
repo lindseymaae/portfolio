@@ -9,14 +9,34 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-
+import { takeEvery, put } from 'redux-saga/effects'
+import axios from 'axios'
 // Create the rootSaga generator function
 function* rootSaga() {
+    yield takeEvery('', getData)
+    // yield takeEvery('', potterSaga)
+    // yield takeEvery('BURN_WEED', controlledBurn)
 
 }
+//saga used to get information 
+function* getData(){
+    try {
+        const getProject = yield axios({
+            type: 'GET',
+            url: '/api/project'
+        })
+        yield put({ type: 'ADD_PROJECT', payload: getProject.data })
+    }
+    catch (err) {
+        console.log('in getProject (get)', err)
+    }
+}
+
+
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
 
 // Used to store projects returned from the server
 const projects = (state = [], action) => {

@@ -8,7 +8,10 @@ app.use(bodyParser.json()); // needed for angular requests
 app.use(express.static('build'));
 
 /** ---------- ROUTES ---------- **/
+//route includes: 
+const projectRouter = require('./Routes/project.router');
 
+app.use('/', projectRouter);
 
 /** ---------- START SERVER ---------- **/
 app.listen(port, function () {
