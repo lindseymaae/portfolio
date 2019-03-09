@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import { Link, Router } from 'react-router-dom';
+import Linkify, { linkify } from 'react-linkify';
 const mapStateToProps = reduxState => ({
   reduxState,
 });
@@ -20,23 +20,26 @@ class App extends Component {
 
   render() {
     console.log(this.props.reduxState.projects);
-    
-    return (      
+
+    return (
       <div className="App">
-        <p>
-          {this.props.reduxState.projects.map((project) => (            
-            <div>
+        <div>
+          {this.props.reduxState.projects.map((project) => (
+            <div className="projectDiv">
               <div>{project.thumbnail}</div>
-            <div>{project.name}</div> 
-            <div>{project.description} </div>
-           <div>{project.github}</div>
-           <div>{project.website}</div>
+              <h2>{project.name}</h2>
+              <p>{project.tag_id}</p>
+              <p>{project.description} </p>
+              <Linkify> GitHub: {project.github}</Linkify>
+              <p>
+                <Linkify> Website: {project.website}</Linkify>
+              </p>
               <div>{project.date_completed}</div>
-              <div>{project.tag_id}</div>
+
             </div>
-           
+
           ))}
-        </p>
+        </div>
       </div>
     );
   }
