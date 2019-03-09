@@ -11,6 +11,7 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects'
 import axios from 'axios'
+
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_PROJECT', getData)

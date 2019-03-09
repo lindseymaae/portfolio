@@ -1,52 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-import Linkify, { linkify } from 'react-linkify';
+import Projects from '../Projects/Projects'
 const mapStateToProps = reduxState => ({
-  reduxState,
+    reduxState,
 });
 
 class App extends Component {
-  // Renders the entire app on the DOM
+    // Renders the entire app on the DOM
 
-  componentDidMount() {
-    this.getProjects();
-    // use component did mount to dispatch an action to request the projectList from the API
-  }
+    render() {
+        console.log(this.props.reduxState.projects);
 
-  getProjects() {
-    this.props.dispatch({ type: 'GET_PROJECT' })
-  }
-
-  render() {
-    console.log(this.props.reduxState.projects);
-
-    return (
-      <div className="App">
-        <div>
-          {this.props.reduxState.projects.map((project) => (
-            <div className="projectDiv">
-              <div>{project.thumbnail}</div>
-              <h2>{project.name}</h2>
-              <p>{project.tag_id}</p>
-              <p>{project.description} </p>
-              <Linkify> GitHub: {project.github}</Linkify>
-              <p>
-                <Linkify> Website: {project.website}</Linkify>
-              </p>
-              <div>{project.date_completed}</div>
-
+        return (
+            <div className="App">
+            <Projects />
             </div>
-
-          ))}
-        </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 const mapReduxStateToProps = (reduxState) => ({
-  reduxState
+    reduxState
 });
 
 export default connect(mapStateToProps)(App);
