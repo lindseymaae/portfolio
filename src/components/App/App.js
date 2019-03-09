@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
-
+import { Link, Router } from 'react-router-dom';
 const mapStateToProps = reduxState => ({
   reduxState,
 });
@@ -24,9 +24,18 @@ class App extends Component {
     return (      
       <div className="App">
         <p>
-          {this.props.reduxState.projects.map((project) => (
-          <li>{this.project}</li> ))}
-
+          {this.props.reduxState.projects.map((project) => (            
+            <div>
+              <div>{project.thumbnail}</div>
+            <div>{project.name}</div> 
+            <div>{project.description} </div>
+           <div>{project.github}</div>
+           <div>{project.website}</div>
+              <div>{project.date_completed}</div>
+              <div>{project.tag_id}</div>
+            </div>
+           
+          ))}
         </p>
       </div>
     );
