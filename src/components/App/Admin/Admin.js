@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import './App.css';
 import { connect } from 'react-redux';
 import Projects from '../Projects/Projects'
 const mapStateToProps = reduxState => ({
     reduxState,
 });
 
-class App extends Component {
-// Renders the entire app on the DOM
+class Admin extends Component {
+    // Renders the entire app on the DOM
 
     render() {
         console.log(this.props.reduxState.projects);
 
         return (
-            <div className="App">
-            <Projects />
+            <div >
+              
             </div>
         );
     }
 }
 
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Admin);

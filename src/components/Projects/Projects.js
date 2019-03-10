@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Linkify, { linkify } from 'react-linkify';
+import Linkify  from 'react-linkify';
+
 const mapStateToProps = reduxState => ({
   reduxState,
 });
@@ -29,10 +30,8 @@ class App extends Component {
               <h2>{project.name}</h2>
               <p>{project.tag_id}</p>
               <p>{project.description} </p>
-              <Linkify> GitHub: {project.github}</Linkify>
-              <p>
+                <Linkify> GitHub: {project.github}</Linkify>
                 <Linkify> Website: {project.website}</Linkify>
-              </p>
               <div>{project.date_completed}</div>
 
             </div>
@@ -44,8 +43,5 @@ class App extends Component {
   }
 }
 
-const mapReduxStateToProps = (reduxState) => ({
-  reduxState
-});
 
 export default connect(mapStateToProps)(App);
