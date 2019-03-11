@@ -15,11 +15,11 @@ import axios from 'axios'
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_PROJECT', getData)
-    // yield takeEvery('', potterSaga)
-    // yield takeEvery('BURN_WEED', controlledBurn)
+    yield takeEvery('POST_PROJECT', postProject)
 
 }
 //saga used to get information 
+
 function* getData(){
     try {
         const getProject = yield axios({
@@ -34,6 +34,18 @@ function* getData(){
         console.log('in getProject (get)', err)
     }
 }
+function* postProject(action) {
+    console.log('2nd saga was hit', action)
+    try {
+        yield axios.post('/project', action.payload)
+        yield put({ type: 'GET_PROJECT' });
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 
 
 

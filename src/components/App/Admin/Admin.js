@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AdminForm from './AdminForm';
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Link } from 'react-router-dom'
 
 
 
