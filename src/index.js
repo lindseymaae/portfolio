@@ -16,6 +16,7 @@ import axios from 'axios'
 function* rootSaga() {
     yield takeEvery('GET_PROJECT', getData)
     yield takeEvery('POST_PROJECT', postProject)
+    yield takeEvery('REMOVE', deleteProject)
 
 }
 //saga used to get information 
@@ -34,6 +35,7 @@ function* getData(){
         console.log('in getProject (get)', err)
     }
 }
+
 function* postProject(action) {
     console.log('2nd saga was hit', action)
     try {
@@ -44,6 +46,16 @@ function* postProject(action) {
     }
 }
 
+function* deleteProject(action) {
+    console.log('delete saga was hit');
+    try {
+        yield axios.delete(`/${action.payload.id}`)
+
+        yield put({ type: 'GET_PROJECT' })
+    } catch (error) {
+        console.log('DELETE ', error)
+    }
+}
 
 
 

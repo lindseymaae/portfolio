@@ -55,6 +55,13 @@ class AdminForm extends Component {
         });
     }
 
+    handleClick = (event) => {
+        console.log(event.target.value)
+        this.props.dispatch({ type: 'REMOVE', payload: event.target.value })
+
+    }
+
+
     render() {
         console.log(this.props.reduxState.projects);
         
@@ -67,7 +74,8 @@ class AdminForm extends Component {
                     <Input placeholder='GitHub URL' type='text' value={this.state.newProject.gitHub} onChange={this.handleNameChange('gitHub')} />
                     <Input placeholder='Website' type='text' value={this.state.newProject.website} onChange={this.handleNameChange('website')} />
                     <Input placeholder='Description' type='text' value={this.state.newProject.description} onChange={this.handleNameChange('description')} />
-                    <Input placeholder="Thumbnail" type='picture' value={this.state.newProject.thumbnail} onChange={this.handleNameChange('thumbnail')} />
+                    <Input placeholder="Thumbnail" type='text' value={this.state.newProject.thumbnail} onChange={this.handleNameChange('thumbnail')} />
+                    <Input placeholder="Tag ID" type='integer' value={this.state.newProject.tag_id} onChange={this.handleNameChange('tag_id')} />
                     <Button type='submit' value='Add New Project'>Add Project</Button>
                 </form>
                 <table>
@@ -81,7 +89,7 @@ class AdminForm extends Component {
                         {this.props.reduxState.projects.map((project) => (
                             <tr>
                                 <td>{project.name}</td>
-                                <td><button>Delete</button></td>
+                                <td><button onClick={this.handleClick}>Delete</button></td>
                             </tr>))}
 
                     </tbody>

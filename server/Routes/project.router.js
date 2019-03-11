@@ -19,9 +19,11 @@ router.get('/api/project', (req, res) => {
 
 
 router.post('/project', (req, res) => {
+    console.log(req.body);
+    
     const newProject = req.body;
-    const queryText = `INSERT INTO "projects" ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
-VALUES ('$1', '$2', '$3', '$4', '$5', '$6', $7);
+    const queryText = `INSERT INTO projects ("name", "description", "thumbnail", "website", "github", "date_completed", "tag_id")
+VALUES ($1, $2, $3, $4, $5, $6, $7);
 `;
     const queryValues = [
         newProject.name,
@@ -72,15 +74,15 @@ VALUES ('$1', '$2', '$3', '$4', '$5', '$6', $7);
 //         });
 // });
 
-// router.delete('/:id', (req, res) => {
-//     const queryText = 'DELETE FROM plant WHERE id=$1';
-//     console.log('query', req.query.id, 'params', req.params.id)
-//     pool.query(queryText, [Number(req.params.id)])
-//         .then(() => { res.sendStatus(200); })
-//         .catch((err) => {
-//             console.log('Error completing SELECT plant query', err);
-//             res.sendStatus(500);
-//         });
-// });
+router.delete('/:id', (req, res) => {
+    const queryText = 'DELETE FROM project WHERE id=$1';
+    console.log('query', req.query.id, 'params', req.params.id)
+    pool.query(queryText, [Number(req.params.id)])
+        .then(() => { res.sendStatus(200); })
+        .catch((err) => {
+            console.log('Error completing DELETE project query', err);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;
